@@ -1,0 +1,40 @@
+body {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none !important;  
+    color: white !important;
+}
+
+.container{
+    min-height: 55vh;
+    /* background-color:#198754; */
+    color: #198754;
+    font-family: 'Poppins', sans-serif;
+    margin: 90px auto;
+    width: 45%;
+    padding: 12px 12px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 90px;
+}
+
+
+#hero{
+    height: 60vh;
+    margin-bottom: 60px;
+}
+.bottom{
+
+    height: 110px;
+    background-color:#198754;
+    color: #fff !important;
+}
+
+.footer{
+    position: relative;
+    top: -50px;
+}
