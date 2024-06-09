@@ -1,38 +1,61 @@
-document.getElementById('myForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    // Clear previous error messages
-    document.querySelectorAll('.error-message').forEach(function(el) {
-        el.style.display = 'none';
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.querySelector('#loginForm');
+    const registerForm = document.querySelector('#registerForm');
 
-    let valid = true;
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.querySelector('#loginEmail').value;
+            const password = document.querySelector('#loginPassword').value;
+            const users = JSON.parse(localStorage.getItem('users')) || [];
 
+            const user = users.filter(user => user.email === email && user.password === password);
 
-    // Email validation
-    const email = document.getElementById('email').value;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        valid = false;
-        const emailError = document.getElementById('emailError');
-        emailError.textContent = 'Please enter a valid email address.';
-        emailError.style.display = 'block';
+            if (user) {
+                displayMessage('Login successful! Redirecting to next page...', 'success');
+                setTimeout(() => {
+                    window.location = 'quiz.html'; 
+                }, 2000);
+            } else {
+                displayMessage('Invalid email or password', 'error');
+            }
+        });
     }
 
-    // Password validation
-    const password = document.getElementById('password').value;
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-    if (!passwordRegex.test(password)) {
-        valid = false;
-        const passwordError = document.getElementById('passwordError');
-        passwordError.textContent = 'Password must be 6-20 characters long and contain at least one numeric digit, one uppercase, and one lowercase letter.';
-        passwordError.style.display = 'block';
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.querySelector('#username').value;
+            const email = document.querySelector('#email').value;
+            const password = document.querySelector('#password').value;
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
+            const isUserExist = users.some(user => user.email === email || user.username === username);
+
+            if (isUserExist) {
+                displayMessage('User is already registered', 'error');
+            } else {
+                const newUser = { username, email, password };
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                displayMessage('Welcome to MyQuizApp! Registered successfully.', 'success');
+                clearForm('registerForm');
+            }
+        });
     }
 
-    if (valid) {
-        console.log('Form Values:');
-        console.log('Email:', email);
-        console.log('Password:', password);
+    function displayMessage(message, type) {
+        const messageBox = document.querySelector('#message');
+        messageBox.textContent = message;
+        messageBox.className = `message ${type}`;
+        messageBox.style.display = 'block';
+        setTimeout(() => {
+            messageBox.style.display = 'none';
+        }, 3000);
+    }
+
+    function clearForm(formId) {
+        document.querySelector(`#${formId}`).reset();
     }
 });
 

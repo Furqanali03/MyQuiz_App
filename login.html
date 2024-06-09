@@ -4,25 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Quiz App</title>
+    <link rel="stylesheet" href="utilities.css">
+    <title>Quiz App - Login</title>
+    <link rel="icon" type="image/png" href="assets/quiz-icon.png">
 </head>
 <body>
     <div class="container">
         <h2>Quiz App</h2>
         <h3>Login</h3>
-        <form id="myForm">
+        <div id="message" class="message"></div>
+
+        <form id="loginForm">
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" id="email" name="email">
+                <label for="loginEmail">Email:</label>
+                <input type="text" id="loginEmail" name="loginEmail">
                 <small class="error-message" id="emailError"></small>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="loginPassword">
                 <small class="error-message" id="passwordError"></small>
             </div>
-            <a href="register.html">register</a> <br> <br>
-            <button type="submit">Submit</button>
+            <a href="register.html">New User? Register</a> <br><br>
+            <button type="submit">Login</button>
         </form>
     </div>
     <div>

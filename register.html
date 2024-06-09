@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Quiz App</title>
+    <link rel="stylesheet" href="utilities.css">
+    <title>Quiz App - Register</title>
+    <link rel="icon" type="image/png" href="assets/quiz-icon.png">
 </head>
 <body>
     <div class="container">
         <h2>Quiz App</h2>
         <h3>Register</h3>
-        <form id="myForm">
+        <div id="message" class="message"></div>
+
+        <form id="registerForm">
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username">
@@ -26,10 +30,14 @@
                 <input type="password" id="password" name="password">
                 <small class="error-message" id="passwordError"></small>
             </div>
-            <a href="login.html">Already Login</a> <br><br>
-            <button type="submit">Submit</button>
+            <a href="login.html">Already Registered? Login</a> <br><br>
+            <button id="submit_register" type="submit">Submit</button>
         </form>
     </div>
-    <script src="register.js"></script>
+    <div>
+        <a href="index.html"><i class="home fa-solid fa-house"></i></a>
+    </div>
+    <script src="https://kit.fontawesome.com/9aded8b196.js" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
 </body>
 </html>
